@@ -1,0 +1,135 @@
+<!-- Użyte konstrukcje: -->
+<!-- Synonimy -->
+<!-- Redukcja symboliczna -->
+<!-- Podział  -->
+<!-- Kontekst <topic> -->
+<!-- Losowanie -->
+<!-- Wyrażenie warunkowe -->
+
+
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<aiml version="1.0.1" xmlns="http://alicebot.org/2001/AIML-1.0.1"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://alicebot.org/2001/AIML-1.0.1 http://aitools.org/aiml/schema/AIML.xsd">
+
+	  
+<category>
+<pattern>Spotify</pattern>
+<template>
+Poromawiajmy o Spotify.<html:br/>
+</template>
+</category>
+    
+
+<category>
+<pattern>Czym jest Spotify</pattern>
+<template>
+Spotify to muzyczny serwis oferujący swoim użytkownikom dostęp do utworów w strumieniu.<html:br/>
+</template>
+</category>	
+<category>
+<pattern>Co to jest Spotify</pattern>
+<template>
+<srai>Czym jest Spotify</srai>
+</template>
+</category>
+<category>
+<pattern>Opowiedz mi o Spotify</pattern>
+<template>
+<srai>Czym jest Spotify</srai>
+</template>
+</category>		
+
+
+<category>
+<pattern>Jakie usługi zapewnia Spotify</pattern>
+<template>
+Spotify zapewnia miliony utworów oraz działa na wielu różnych platformach, pozwala również przeglądać kolekcje muzyczne swoich znajomych, wykonawców oraz celebrytów, jak również utworzyć stację radiową.
+</template>
+</category>
+<category>
+<pattern>Czy wiesz jakie usługi zapewnia *</pattern>
+<template>
+<srai>Jakie usługi zapewnia <star/></srai>
+</template>
+</category>
+
+
+<category>
+<pattern>Jaki kolor jest motywem Spotify</pattern>
+<template>
+zielony
+</template>
+</category>
+<category>
+<pattern>Ile utworow jest na spotify</pattern>
+<template>
+ponad 50 milionów
+</template>
+</category>
+<category>
+<pattern>Czy wiesz *</pattern>
+<template>
+Wiem, odpowiedz brzmi: <srai><star/></srai>
+</template>
+</category>
+
+
+<topic name="MUZYKA">
+<category>
+<pattern>Muzyka *</pattern>
+<template>
+<random>
+<li>Lubisz sluchać muzyki?</li>
+<li>Jak dużo muzyki słuchasz?</li>
+<li>Zdarza ci się zasypiać przy głośno grającej muzyce?</li>
+<li>Lubisz się uczyć przy muzyce?</li>
+</random>
+</template>
+</category>
+<category>
+<pattern>*</pattern>
+<template>To nie ma związku z muzyką!</template>
+</category>
+<category>
+<pattern>Koniec rozmowy o muzyce</pattern>
+<template><think><set name="topic">*</set></think>Jak chcesz, chociaż ja mogę rozmawiać o muzyce bez końca</template>
+</category>
+</topic>
+<category>
+<pattern>Muzyka *</pattern>
+<template>Muzyka oznacza co innego dla każdego!</template>
+</category>
+<category>
+<pattern>Porozmawiajmy o muzyce</pattern>
+<template><think><set name="topic">MUZYKA</set></think>Z największą przyjemnością!</template>
+</category>
+
+
+<category>
+<pattern>Czy jesteś botem</pattern>
+<template>
+Czy dałem ci powód żebyś tak myślał?
+<think><set name="topic">QUESTION</set></think>
+</template>
+</category>
+<topic name="QUESTION">
+<category>
+<pattern>*</pattern>
+<template>
+<think><set name="var"><uppercase><star /></uppercase></set></think>
+<condition>
+<li name="var" value="TAK">
+Nieprawda, co to za herezje.
+<think><set name="topic">*</set></think>
+</li>
+<li name="var" value="NIE">
+Dokładnie, tutaj się zgadzam.
+<think><set name="topic">*</set></think>
+</li>
+<li>Tak czy nie?</li>
+</condition>
+</template>
+</category>
+</topic>
+</aiml>
